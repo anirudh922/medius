@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="static/css/styles.css">
+    <title>MEDIUS AI Smart HR</title>
+</head>
+<body>
+    <div class="container ">
+        <header class="header">
+            <h1 id="title">
+                MEDIUS AI Smart HR
+            </h1>
+            <p id="description">
+                An AI Assistant Talent Navigator - Guiding Your Next Hire!
+            </p>
+        </header>
+         {% if data.result %}
+            <h3 id="result">Candidate {{ data.name }} is {{data.result}}</h1>
+         {% endif %}
+        <form action="/evaluate_candidate_responses" method="post" id="survey-form">
+         {% csrf_token %}
+            <!-- Text section -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" value="{{ name }}" class="formControl" placeholder="Enter the Candidate's Full Name" required>
+            </div>
+            <div class="form-group">
+               <label for="experience">Years of experience</label>
+               <input type="number" name="experience" id="experience" value="{{ experience }}" class="formControl" placeholder="Enter Candidate's Years of Experience" required>
+           </div>
+            <div class="form-group">
+                <label for="answer1">Can you describe your experience with diary management and scheduling appointments?</label>
+                <input type="text" name="answer1" id="answer1" minlength="10" value="{{ answer1 }}" class="formControl" placeholder="Place the candidate's answer" required>
+            </div>
+            <div class="form-group">
+                <label for="answer2">How do you handle confidential information and sensitive situations?</label>
+                <input type="text" name="answer2" id="answer2" minlength="10" value="{{ answer2 }}" class="formControl" placeholder="Place the candidate's answer" required>
+            </div>
+            <div class="form-group">
+               <label for="answer3">Can you provide an example of a complex problem you've solved in a similar role?</label>
+               <input type="text" name="answer3" id="answer3" minlength="10" value="{{ answer3 }}" class="formControl" placeholder="Place the candidate's answer" required>
+           </div>
+           <div class="form-group">
+               <label for="answer4">How do you prioritize tasks and manage your time when dealing with a busy executive's schedule?</label>
+               <input type="answer4" name="answer4" id="answer4" minlength="10" value="{{ answer4 }}" class="formControl" placeholder="Place the candidate's answer" required>
+           </div>
+            <div class="form-group">
+               <label for="answer5">How comfortable are you with liaising with high-level stakeholders and managing professional relationships?</label>
+               <input type="answer5" name="answer5" id="answer5" minlength="10" value="{{ answer5 }}" class="formControl" placeholder="Place the candidate's answer" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+            <div class="form-group">
+                <a id="reset" class="btn" href="/evaluate_candidate_responses">RESET</a></button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
